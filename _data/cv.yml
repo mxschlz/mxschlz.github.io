@@ -25,7 +25,7 @@
       description:
         - Grade 1.1
         - English C1
-        - thesis in acoustic and computational neuroscience, "AI-supported Evidence For Spectro-Temporal Primacy in Auditory Numerosity Judgment"
+        - thesis in acoustic and computational neuroscience, "AI-Supported Evidence For Spectro-Temporal Primacy in Auditory Numerosity Judgment"
         - Emphasis on neuro- and behavioral science
         - Tutoring how to prepare, conduct and analyze psychoacoustic electroencephalogram (EEG) experiments with Python.
         - Implementation of custom-written platform which enables asynchronous and simultaneous operation of multiple devices (cameras and processors mainly) via a Python interface (AG Neurobiology)
