@@ -27,7 +27,7 @@
         - English C1
         - thesis in acoustic and computational neuroscience, "AI-Supported Evidence For Spectro-Temporal Primacy in Auditory Numerosity Judgment"
         - Emphasis on neuro- and behavioral science
-        - Tutoring how to prepare, conduct and analyze psychoacoustic electroencephalogram (EEG) experiments with Python.
+        - Tutoring how to prepare, conduct and analyze psychoacoustic electroencephalogram (EEG) experiments with Python
         - Implementation of custom-written platform which enables asynchronous and simultaneous operation of multiple devices (cameras and processors mainly) via a Python interface (AG Neurobiology)
         - Development of a custom analysis tool which enables EEG-analysis in MNE-Python (AG Neurobiology)
         - Attended a six-week course on Bayesian Statistics in 2022 (Statistical Rethinking, Richard McElreath)
@@ -44,6 +44,11 @@
 - title: Experience
   type: time_table
   contents:
+    - title: Student Assistant
+      institution: Max-Planck Institute for Human Cognitive and Brain Sciences
+      year: 2024
+      description:
+        - Assisting in the implementation electrical cortical field simulations for optimization of transcranial magnetic stimulation approaches via PyNibs (Prof. Dr. Gesa Hartwigsen)
     - title: Student Assistant
       institution: Max-Planck Institute for Human Cognitive and Brain Sciences
       year: 2021 - 2024
