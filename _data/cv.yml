@@ -23,10 +23,8 @@
       institution: University Leipzig, Germany
       year: 2022 - 2024
       description:
-        - Grade 1.1
         - English C1
-        - thesis in acoustic and computational neuroscience, "AI-Supported Evidence For Spectro-Temporal Primacy in Auditory Numerosity Judgment"
-        - Emphasis on neuro- and behavioral science
+        - Thesis in acoustic and computational neuroscience, "AI-Supported Evidence For Spectro-Temporal Primacy in Auditory Numerosity Judgment"
         - Tutoring how to prepare, conduct and analyze psychoacoustic electroencephalogram (EEG) experiments with Python
         - Implementation of custom-written platform which enables asynchronous and simultaneous operation of multiple devices (cameras and processors mainly) via a Python interface (AG Neurobiology)
         - Development of a custom analysis tool which enables EEG-analysis in MNE-Python (AG Neurobiology)
@@ -36,7 +34,7 @@
       institution: University Leipzig
       year: 2017 - 2021
       description:
-        - Bachelor Thesis in acoustic neuroscience, "Measuring Auditory Tuning Curves With EEG"
+        - Bachelor Thesis in auditory neuroscience, "Measuring Auditory Tuning Curves With EEG"
     - title: B. Sc. Biology
       institution: Justus-Liebig University Gießen
       year: 2016 - 2017
@@ -54,13 +52,7 @@
       year: 2021 - 2024
       description:
         - Assisting in study preparation, conduction and analysis in the Psychology Department (Prof. Dr. Christian Doeller)
-        - Study types include behavioral, eye-tracking, virtual-reality, and fMRI
-
-    - title: Tutor
-      institution: ABACUS Nachhilfeinstitut
-      year: 2019 - 2020
-      description:
-        - Tutoring High-School students in Biology and Chemistry
+        - Behavioral, eye-tracking, virtual-reality, and fMRI studies
 
 - title: Open Source Projects
   type: time_table
@@ -69,19 +61,9 @@
       year: 2020 - now
       description: My GitHub repository, mostly containing Python containers for experiment and psychological analysis scripts.
 
-- title: Certifications
-  type: time_table
-  contents:
-    - year: 2017 - 2023
-      items:
-        - Scholarship of the Bosch Jugendhilfe
-
 - title: Academic Interests
   type: nested_list
   contents:
     - title: Selective Attention
     - title: Auditory Scene Analysis
-    - title: Deep Learning
     - title: Electroencephalography (EEG)
-    - title: Modeling of the Auditory System
-    - title: Software development
