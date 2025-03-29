@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://mxschlz.github.io/sitemap.xml
+Sitemap: https://mxschlz.de/sitemap.xml
