@@ -1,14 +1,11 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - mxschlz
 
 repo_description_lines_max: 2
 
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - mxschlz/BinauralLocalizationCNN
+  - mxschlz/psychopy-experiments
+  - mxschlz/head_gaze_tracking
+  - mxschlz/exptools2
+  - mxschlz/slab-platform
