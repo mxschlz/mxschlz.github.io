@@ -222,11 +222,12 @@ related_publications: true
                 </div>
                 <div class="mt-8 p-4">
                     <div id="tab-content-alpha" class="content-section active">
-                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <!-- MODIFICATION: Changed items-center to items-stretch -->
+                        <div class="grid md:grid-cols-2 gap-8 items-stretch">
                             <div>
                                 <h3 class="text-2xl font-semibold text-gray-800">Anticipatory Alpha Power (~8-14 Hz)</h3>
-                                <p class="mt-2 text-gray-600">Alpha oscillations reflect active neural inhibition. Before a stimulus appears, increased alpha power over the brain hemisphere corresponding to a distractor's location is a sign of **proactive suppression**. Its absence suggests this preparation failed.</p>
-                                <p class="mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg text-sm"><strong>Hypothesis:</strong> Ironic capture occurs because proactive suppression fails. We predict **no significant increase in alpha power** before the distractor appears.</p>
+                                <p class="mt-2 text-gray-600">Alpha oscillations reflect active neural inhibition. Before a stimulus appears, increased alpha power over the brain hemisphere corresponding to a distractor's location is a sign of <strong>proactive suppression</strong>. Its absence suggests this preparation failed.</p>
+                                <p class="mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg text-sm"><strong>Hypothesis:</strong> Ironic capture occurs because proactive suppression fails. We predict <strong>no significant increase in alpha power</strong> before the distractor appears.</p>
                             </div>
                             <div class="chart-container">
                                 <canvas id="alphaChart"></canvas>
@@ -234,11 +235,12 @@ related_publications: true
                         </div>
                     </div>
                     <div id="tab-content-n2ac" class="content-section">
-                         <div class="grid md:grid-cols-2 gap-8 items-center">
+                         <!-- MODIFICATION: Changed items-center to items-stretch -->
+                         <div class="grid md:grid-cols-2 gap-8 items-stretch">
                             <div>
                                 <h3 class="text-2xl font-semibold text-gray-800">N2ac Component</h3>
-                                <p class="mt-2 text-gray-600">The N2-anterior-contralateral (N2ac) is an ERP component that serves as a direct marker of **attentional allocation** to a lateralized sound. A large N2ac elicited by a distractor means attention was captured by it.</p>
-                                 <p class="mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg text-sm"><strong>Hypothesis:</strong> We predict a **robust distractor-elicited N2ac** in the distractor-cued condition, confirming attentional capture.</p>
+                                <p class="mt-2 text-gray-600">The N2-anterior-contralateral (N2ac) is an ERP component that serves as a direct marker of <strong>attentional allocation</strong> to a lateralized sound. A large N2ac elicited by a distractor means attention was captured by it.</p>
+                                 <p class="mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg text-sm"><strong>Hypothesis:</strong> We predict a <strong>robust distractor-elicited N2ac</strong> in the distractor-cued condition, confirming attentional capture.</p>
                            </div>
                             <div class="chart-container">
                                 <canvas id="n2acChart"></canvas>
@@ -246,11 +248,12 @@ related_publications: true
                         </div>
                     </div>
                     <div id="tab-content-pd" class="content-section">
-                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <!-- MODIFICATION: Changed items-center to items-stretch -->
+                        <div class="grid md:grid-cols-2 gap-8 items-stretch">
                             <div>
                                 <h3 class="text-2xl font-semibold text-gray-800">Distractor Positivity (Pd) Component</h3>
-                                <p class="mt-2 text-gray-600">The Pd component reflects the **active suppression** of a distractor. An *early* Pd indicates proactive suppression that prevents capture. A *late* Pd, appearing after an N2ac, indicates reactive suppression—an attempt to recover *after* capture has already occurred.</p>
-                                <p class="mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg text-sm"><strong>Hypothesis:</strong> We predict a **late Pd** following the N2ac, signaling a difficult, reactive attempt to disengage from the ironically captured distractor.</p>
+                                <p class="mt-2 text-gray-600">The Pd component reflects the <strong>active suppression</strong> of a distractor. An <em>early</em> Pd indicates proactive suppression that prevents capture. A <em>late</em> Pd, appearing after an N2ac, indicates reactive suppression—an attempt to recover <em>after</em> capture has already occurred.</p>
+                                <p class="mt-4 p-4 bg-yellow-100 text-yellow-800 rounded-lg text-sm"><strong>Hypothesis:</strong> We predict a <strong>late Pd</strong> following the N2ac, signaling a difficult, reactive attempt to disengage from the ironically captured distractor.</p>
                             </div>
                             <div class="chart-container">
                                 <canvas id="pdChart"></canvas>
@@ -463,7 +466,8 @@ related_publications: true
             container.innerHTML = '';
             evidenceData.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'bg-white p-6 rounded-lg shadow-md evidence-card flex flex-col';
+                // MODIFICATION: Added 'h-full' to ensure cards stretch to fill the grid row height
+                card.className = 'bg-white p-6 rounded-lg shadow-md evidence-card flex flex-col h-full';
                 card.innerHTML = `
                     <div class="flex-grow">
                         <h3 class="font-bold text-lg text-gray-800">${item.title}</h3>
