@@ -433,6 +433,7 @@ related_publications: true
             }
         };
 
+        // Initialize the main performance chart
         const perfCtx = document.getElementById('performanceChart').getContext('2d');
         createChart(perfCtx, 'bar', chartData.performance, {
             responsive: true,
@@ -445,19 +446,14 @@ related_publications: true
             }
         });
 
+        // EEG CHARTS - LAZY LOADING IMPLEMENTATION
+        // Store chart instances here. They will be created on demand.
         let alphaChart, n2acChart, pdChart;
-        function initEEGCharts() {
-            if(alphaChart) alphaChart.destroy();
-            if(n2acChart) n2acChart.destroy();
-            if(pdChart) pdChart.destroy();
-            const alphaCtx = document.getElementById('alphaChart').getContext('2d');
-            alphaChart = createChart(alphaCtx, 'line', chartData.alpha, commonOptions);
-            const n2acCtx = document.getElementById('n2acChart').getContext('2d');
-            n2acChart = createChart(n2acCtx, 'line', chartData.n2ac, commonOptions);
-            const pdCtx = document.getElementById('pdChart').getContext('2d');
-            pdChart = createChart(pdCtx, 'line', chartData.pd, commonOptions);
-        }
-        initEEGCharts();
+
+        // Initialize the first, visible chart on page load.
+        const alphaCtx = document.getElementById('alphaChart').getContext('2d');
+        alphaChart = createChart(alphaCtx, 'line', chartData.alpha, commonOptions);
+
 
         // --- Dynamic Content Population ---
         function populateEvidenceLocker() {
@@ -466,7 +462,6 @@ related_publications: true
             container.innerHTML = '';
             evidenceData.forEach(item => {
                 const card = document.createElement('div');
-                // MODIFICATION: Added 'h-full' to ensure cards stretch to fill the grid row height
                 card.className = 'bg-white p-6 rounded-lg shadow-md evidence-card flex flex-col h-full';
                 card.innerHTML = `
                     <div class="flex-grow">
@@ -548,16 +543,29 @@ related_publications: true
         if (tabs.length > 0) {
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
+                    // First, toggle the active classes on tabs
                     tabs.forEach(t => {
                         t.classList.remove('active');
                         t.classList.add('border-transparent');
                     });
                     tab.classList.add('active');
                     tab.classList.remove('border-transparent');
+
+                    // Then, show the correct content section
                     const target = tab.getAttribute('data-tab');
                     document.querySelectorAll('.content-section').forEach(section => {
                         section.classList.toggle('active', section.id === `tab-content-${target}`);
                     });
+
+                    // LAZY-LOAD CHARTS: Create a chart only the first time its tab is clicked.
+                    // This ensures the container is visible and has dimensions.
+                    if (target === 'n2ac' && !n2acChart) {
+                        const n2acCtx = document.getElementById('n2acChart').getContext('2d');
+                        n2acChart = createChart(n2acCtx, 'line', chartData.n2ac, commonOptions);
+                    } else if (target === 'pd' && !pdChart) {
+                        const pdCtx = document.getElementById('pdChart').getContext('2d');
+                        pdChart = createChart(pdCtx, 'line', chartData.pd, commonOptions);
+                    }
                 });
             });
         }
