@@ -1,14 +1,14 @@
 ---
 layout: page
-title: project 1
-description: with background image
+title: Distractor Cueing And The Ignoring Paradox
+description: Some insights
 img: assets/img/12.jpg
 importance: 1
 category: work
 related_publications: true
 ---
 
-<!DOCTYPE html>
+
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +22,10 @@ related_publications: true
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* FIX: Prevents sticky header from overlapping content on anchor link clicks */
+        html {
+            scroll-padding-top: 4rem; /* Matches the h-16 height of the header */
+        }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #FAF9F6;
@@ -74,6 +78,16 @@ related_publications: true
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        /* IMPROVEMENT: Centralized style for the small loader icon */
+        .loader-small {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: auto;
         }
         .evidence-card {
             transition: box-shadow 0.3s ease;
@@ -484,7 +498,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Gemini API Call Logic ---
     async function callGemini(prompt) {
-        const apiKey = "";
+        // DANGER: Your API key is exposed on the client-side.
+        // This is a major security risk. Anyone visiting your site can steal this key
+        // and use it, potentially costing you money or getting your account banned.
+        // SOLUTION: Move this API call to a backend server or a serverless function
+        // where the key can be stored securely as an environment variable.
+        const apiKey = "AIzaSyB5d00WFHCKpB8se4lHc9BRj4GHxvqKVfI";
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
         const payload = {
@@ -602,7 +621,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const originalText = summaryP.textContent;
 
             button.disabled = true;
-            button.innerHTML = '<div class="loader-small" style="width:20px; height:20px; border-width:2px; margin:auto;" role="status"></div>';
+            // IMPROVEMENT: Use the .loader-small class instead of inline styles
+            button.innerHTML = '<div class="loader-small" role="status"></div>';
 
             const prompt = `You are a science journalist. Rephrase the following academic summary about attentional control into a more accessible, engaging explanation for a general audience. Clearly state how this finding relates to the core idea of "ironic capture" (that preparing to ignore something can paradoxically make it harder to ignore).\n\nOriginal summary: "${originalText}"`;
 
