@@ -42,12 +42,12 @@ related_publications: true
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            height: 300px;
+            min-height: 300px; /* Changed from 'height' to 'min-height' */
             max-height: 40vh;
         }
         @media (min-width: 768px) {
             .chart-container {
-                height: 350px;
+                min-height: 350px; /* Changed from 'height' to 'min-height' */
             }
         }
         .tab {
@@ -207,7 +207,7 @@ related_publications: true
         </section>
 
         <!-- Section 4: EEG -->
-        <section id="eeg" class="py-16 md:py-24 bg-gray-50 my-16 rounded-xl shadow-lg">
+        <section id="eeg" class="py-20 md:py-32 bg-gray-50 my-16 rounded-xl shadow-lg">
             <div class="text-center max-w-3xl mx-auto px-4">
                 <h2 class="text-3xl font-bold text-gray-900">Searching for Brain Signatures</h2>
                 <p class="mt-4 text-lg text-gray-600">Using EEG, we can track the brain's activity in real-time to see how it handles distraction. Specific neural markers can help us differentiate between successful suppression and ironic capture.</p>
@@ -265,7 +265,7 @@ related_publications: true
         </section>
 
         <!-- Section 5: Evidence Locker -->
-        <section id="evidence" class="py-16 md:py-24">
+        <section id="evidence" class="py-20 md:py-32">
             <div class="text-center max-w-3xl mx-auto">
                 <h2 class="text-3xl font-bold text-gray-900">The Evidence Locker</h2>
                 <p class="mt-4 text-lg text-gray-600">The ironic capture hypothesis is supported by a rich tapestry of findings from across cognitive science. Explore related studies to see how this paradox fits into the bigger picture of attentional control.</p>
@@ -275,7 +275,7 @@ related_publications: true
         </section>
 
         <!-- Section 6: Future Work -->
-        <section id="future" class="py-16 md:py-24 bg-blue-50 my-16 rounded-xl">
+        <section id="future" class="py-20 md:py-32 bg-blue-50 my-16 rounded-xl">
              <div class="text-center max-w-3xl mx-auto">
                 <h2 class="text-3xl font-bold text-gray-900">What's Next? Testing the Theory</h2>
                 <p class="mt-4 text-lg text-gray-600">The ironic capture hypothesis makes clear, testable predictions. Future experiments can manipulate key variables to confirm if the theory holds true.</p>
