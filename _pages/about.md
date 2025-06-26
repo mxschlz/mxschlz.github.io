@@ -19,4 +19,4 @@ social: true # includes social icons at the bottom of the page
 
 Hello world, I am Max!
 I am a neuroscience PhD candidate at the [auditory cognition lab](https://auditorycognition.com/) at [University Lübeck](https://www.ipsy1.uni-luebeck.de/startseite), supervised by Dr. Malte Wöstmann. Together with him and Jonas Obleser, I am currently interested in subprocesses of auditory selective attention.
-Specifically, my focus lies on delineating effects of target enhancement from distractor capture and suppression. At the moment, main research methods comprise EEG and webcam-based eye and head tracking.
+Specifically, my focus lies on delineating target enhancement from distractor capture and suppression. At the moment, main research methods comprise EEG and webcam-based eye and head tracking.
