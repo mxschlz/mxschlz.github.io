@@ -21,15 +21,12 @@
   contents:
     - title: M. Sc. Biology
       institution: University Leipzig, Germany
-      year: 2022 - 2024
+      year: 2020 - 2024
       description:
-        - English C1
         - Thesis in acoustic and computational neuroscience, "AI-Supported Evidence For Spectro-Temporal Primacy in Auditory Numerosity Judgment"
         - Tutoring how to prepare, conduct and analyze psychoacoustic electroencephalogram (EEG) experiments with Python
         - Implementation of custom-written platform which enables asynchronous and simultaneous operation of multiple devices (cameras and processors mainly) via a Python interface (AG Neurobiology)
         - Development of a custom analysis tool which enables EEG-analysis in MNE-Python (AG Neurobiology)
-        - Attended a six-week course on Bayesian Statistics in 2022 (Statistical Rethinking, Richard McElreath)
-        - Development and Maintaining IT-Service within AG Neurobiology
     - title: B. Sc. Biology
       institution: University Leipzig
       year: 2017 - 2021
@@ -46,7 +43,7 @@
       institution: Max-Planck Institute for Human Cognitive and Brain Sciences
       year: 2024
       description:
-        - Assisting in the implementation electrical cortical field simulations for optimization of transcranial magnetic stimulation approaches via PyNibs (Prof. Dr. Gesa Hartwigsen)
+        - Assisting in the implementation electrical cortical field simulations for optimization of transcranial magnetic stimulation approaches with PyNibs (Prof. Dr. Gesa Hartwigsen)
     - title: Student Assistant
       institution: Max-Planck Institute for Human Cognitive and Brain Sciences
       year: 2021 - 2024
