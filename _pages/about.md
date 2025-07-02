@@ -9,8 +9,7 @@ profile:
   image: me.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>Maria-Goeppert-Straße 9a</p>
-    <p>23552 Lübeck, Schleswig-Holstein</p>
+    <p>Me (obviously)</p>
 
 news: true # includes a list of news items
 selected_papers: true # includes a list of papers marked as "selected={true}"
