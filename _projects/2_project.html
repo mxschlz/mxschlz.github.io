@@ -1,0 +1,534 @@
+---
+layout: page
+title: Neural Origins of N2ac & Pd: An Interactive Guide
+description: :-)
+img: assets/img/3.jpg
+importance: 2
+category: work
+giscus_comments: true
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Origins of N2ac & Pd: An Interactive Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: The SPA uses a tab-based navigation system to deconstruct the dense report into four logical, thematic sections: an "Overview" for high-level comparison, dedicated sections for "N2ac" and "Pd" to detail each component, and a final section on the "Fronto-Parietal Network (FPN)" to explain the brain's control system. This structure was chosen over a linear report format to improve usability, allowing users to either get a quick summary or dive deep into specific areas of interest. The user flow starts with a comparative visualization, encouraging exploration into the more detailed sections. New features include a term definition tool in the Overview, and in the FPN section, tools to suggest experimental paradigms, generate hypotheses, and suggest related brain regions/networks, further enhancing interactive learning and research ideation. -->
+    <!-- Visualization & Content Choices:
+        - Report Info: N2ac vs Pd characteristics (Table 1). Goal: Compare. Viz: Side-by-side HTML/CSS diagrams of head models showing topographies. Interaction: Clickable zones leading to detail sections. Justification: Visually contrasts the two components more effectively than a static table. Library: HTML/CSS with JS for navigation.
+        - Report Info: Key characteristics of each component (latency, polarity, etc.). Goal: Inform. Viz: Radar charts for N2ac and Pd. Interaction: Chart.js tooltips on hover. Justification: Radar charts provide a compelling multi-axial comparison of a component's features. Library: Chart.js.
+        - Report Info: FPN modulating sensory areas. Goal: Show Relationships. Viz: HTML/CSS diagram of a brain with FPN sending top-down signals to auditory/visual cortices. Interaction: Hover effects to show tooltips explaining the role of each brain region. Justification: A dynamic diagram clarifies the complex interaction between the control network and sensory areas. Library: HTML/CSS with JS.
+        - Report Info: Textual content (summaries, findings). Goal: Organize. Viz: Content presented in cards with clear headings. Interaction: Revealed/hidden based on tab navigation. Justification: Cards break down text into manageable, thematically-grouped chunks. Library: HTML/CSS with JS.
+        - New Feature: Define a Term. Goal: Inform/Clarify. Viz: Text output. Interaction: User input + button click. Justification: Provides on-demand definitions for neuroscience terms. Library: Gemini API.
+        - New Feature: Suggest Experimental Paradigm. Goal: Inspire Research. Viz: Text output (bulleted list). Interaction: Button click. Justification: Offers practical research ideas based on the attention concepts. Library: Gemini API.
+        - New Feature: Generate a Hypothesis. Goal: Inspire Research. Viz: Text output. Interaction: User input + button click. Justification: Helps formulate testable hypotheses for research scenarios. Library: Gemini API.
+        - New Feature: Suggest Related Brain Regions/Networks. Goal: Inform/Explore. Viz: Text output (bulleted list). Interaction: User input + button click. Justification: Provides broader contextual information on brain networks related to specific components. Library: Gemini API.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-btn {
+            transition: all 0.3s ease;
+        }
+        .nav-btn.active {
+            background-color: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 640px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .brain-diagram-bg {
+            background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+            background-size: 15px 15px;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900">Neural Signatures of Selective Attention</h1>
+            <p class="mt-2 text-lg text-slate-600 max-w-3xl mx-auto">An interactive guide to the N2ac and Pd brain components and their control by the Fronto-Parietal Network.</p>
+        </header>
+
+        <nav class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8">
+            <button data-target="overview" class="nav-btn active font-medium py-2 px-4 rounded-lg bg-white shadow-sm hover:bg-blue-100">Overview</button>
+            <button data-target="n2ac" class="nav-btn font-medium py-2 px-4 rounded-lg bg-white shadow-sm hover:bg-blue-100">N2ac (Target Selection)</button>
+            <button data-target="pd" class="nav-btn font-medium py-2 px-4 rounded-lg bg-white shadow-sm hover:bg-blue-100">Pd (Distractor Suppression)</button>
+            <button data-target="fpn" class="nav-btn font-medium py-2 px-4 rounded-lg bg-white shadow-sm hover:bg-blue-100">Brain's Control System</button>
+        </nav>
+
+        <main>
+            <section id="overview" class="content-section active">
+                <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">What is Selective Attention?</h2>
+                    <p class="text-slate-700 leading-relaxed">In our daily lives, we are surrounded by sights and sounds. Selective attention is the crucial cognitive ability that allows us to focus on what's important (like a single conversation at a noisy party) while filtering out distractions. Neuroscientists use Event-Related Potentials (ERPs)—tiny electrical signals from the brain—to study this process in real-time. This guide explores two key ERPs: the N2ac, linked to focusing on a target, and the Pd, linked to suppressing a distractor.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+                        <h3 class="text-xl font-bold text-blue-600 mb-4">N2ac: Focusing on a Target</h3>
+                        <div class="relative w-48 h-48 rounded-full bg-blue-100 flex items-center justify-center mb-4 brain-diagram-bg">
+                            <div class="w-36 h-40 bg-white rounded-[50%/60%] border-2 border-slate-300 relative">
+                                 <div class="absolute top-[20%] left-[15%] w-10 h-10 bg-blue-500 rounded-full opacity-70 animate-pulse"></div>
+                                 <span class="absolute top-[25%] left-[20%] text-white font-bold">🎯</span>
+                            </div>
+                            <p class="absolute -bottom-2 text-sm text-slate-500">Anterior (Front)</p>
+                        </div>
+                        <p class="text-slate-700">The N2ac is an <strong class="text-blue-600">anterior-contralateral</strong> negative signal in the brain, appearing when we select an <strong class="text-blue-600">auditory</strong> target.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center text-center">
+                        <h3 class="text-xl font-bold text-teal-600 mb-4">Pd: Suppressing a Distractor</h3>
+                         <div class="relative w-48 h-48 rounded-full bg-teal-100 flex items-center justify-center mb-4 brain-diagram-bg">
+                            <div class="w-36 h-40 bg-white rounded-[50%/60%] border-2 border-slate-300 relative">
+                                 <div class="absolute bottom-[20%] right-[15%] w-10 h-10 bg-teal-500 rounded-full opacity-70 animate-pulse"></div>
+                                 <span class="absolute bottom-[25%] right-[20%] text-white font-bold">🚫</span>
+                            </div>
+                             <p class="absolute -bottom-2 text-sm text-slate-500">Posterior (Back)</p>
+                        </div>
+                        <p class="text-slate-700">The Pd is a <strong class="text-teal-600">posterior-contralateral</strong> positive signal, observed when we suppress a salient <strong class="text-teal-600">visual</strong> distractor.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">At a Glance: Component Comparison</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b border-slate-200">
+                                    <th class="p-3 font-semibold">Component</th>
+                                    <th class="p-3 font-semibold">Function</th>
+                                    <th class="p-3 font-semibold">Modality</th>
+                                    <th class="p-3 font-semibold">Topography</th>
+                                    <th class="p-3 font-semibold">Latency</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-200">
+                                    <td class="p-3 font-medium text-blue-600">N2ac</td>
+                                    <td class="p-3">Target Selection</td>
+                                    <td class="p-3">Auditory</td>
+                                    <td class="p-3">Anterior-contralateral</td>
+                                    <td class="p-3">75-250 ms</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-medium text-teal-600">Pd</td>
+                                    <td class="p-3">Distractor Suppression</td>
+                                    <td class="p-3">Visual</td>
+                                    <td class="p-3">Posterior-contralateral</td>
+                                    <td class="p-3">~200-300 ms</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Define a Neuroscience Term ✨</h2>
+                    <p class="text-slate-700 mb-4">Enter a term related to neuroscience or EEG to get a quick definition.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="text" id="termInput" placeholder="e.g., ERP, topography, contralateral" class="flex-grow p-3 border border-slate-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        <button id="defineTermBtn" class="bg-purple-500 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-purple-600 transition-colors">
+                            Define Term
+                        </button>
+                    </div>
+                    <div id="termDefinition" class="mt-4 p-4 bg-purple-50 rounded-lg text-slate-700 hidden">
+                        <p class="text-center text-slate-500">Definition will appear here...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="n2ac" class="content-section">
+                 <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+                    <h2 class="text-2xl font-bold text-blue-600 mb-3">N2ac: The Signature of Target Selection</h2>
+                    <p class="text-slate-700 leading-relaxed">The N2ac (N2-anterior-contralateral) is an ERP component that serves as a key marker for focusing attention in a complex auditory scene. It is considered the auditory equivalent of the visual N2pc component. This section explores its characteristics, function, and proposed neural origins. Its presence signals the brain's active mechanism for enhancing a relevant sound while ignoring others.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">N2ac Characteristics</h3>
+                        <div class="chart-container">
+                            <canvas id="n2acChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4">Key Insights</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1">▶</span>
+                                <div>
+                                    <h4 class="font-semibold">Functional Role</h4>
+                                    <p class="text-slate-600">Reflects the moment-to-moment deployment of auditory spatial attention. A larger amplitude is linked to more efficient selection of target sounds.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1">▶</span>
+                                <div>
+                                    <h4 class="font-semibold">Neural Generators</h4>
+                                    <p class="text-slate-600">Source localization points to the auditory cortex and frontal regions like the lateral prefrontal cortex and frontal eye fields.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-blue-500 mr-3 mt-1">▶</span>
+                                <div>
+                                    <h4 class="font-semibold">Cellular Basis</h4>
+                                    <p class="text-slate-600">Thought to arise from synaptic input to pyramidal neurons in the upper layers of the auditory cortex, driven by top-down signals.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <button id="elaborateN2acBtn" class="mt-6 w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors">
+                            Elaborate on N2ac Neural Origins ✨
+                        </button>
+                        <div id="n2acElaboration" class="mt-4 p-4 bg-blue-50 rounded-lg text-slate-700 hidden">
+                            <p class="text-center text-slate-500">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pd" class="content-section">
+                <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+                    <h2 class="text-2xl font-bold text-teal-600 mb-3">Pd: The Signature of Distractor Suppression</h2>
+                    <p class="text-slate-700 leading-relaxed">The Pd (distractor positivity) is an ERP component reflecting an active inhibitory process. It is typically observed when a salient but irrelevant stimulus is successfully ignored, primarily in the visual domain. A direct auditory equivalent is not well-established. This section details what is known about the Pd and its role in keeping us focused by actively suppressing potential distractions.</p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">Pd Characteristics (Visual)</h3>
+                        <div class="chart-container">
+                            <canvas id="pdChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4">Key Insights</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-3 mt-1">▶</span>
+                                <div>
+                                    <h4 class="font-semibold">Functional Role</h4>
+                                    <p class="text-slate-600">Signals the active suppression of salient distractors. A larger amplitude correlates with more successful ignoring of irrelevant information.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-teal-500 mr-3 mt-1">▶</span>
+                                <div>
+                                    <h4 class="font-semibold">Neural Generators</h4>
+                                    <p class="text-slate-600">Sources are located in the visual cortex and parietal regions, suggesting top-down inhibitory control over sensory processing areas.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-teal-500 mr-3 mt-1">▶</span>
+                                <div>
+                                    <h4 class="font-semibold">Auditory Domain</h4>
+                                    <p class="text-slate-600">A clear, lateralized "auditory Pd" is not established. Instead, auditory distractor suppression is often linked to changes in alpha brainwave power.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <button id="elaboratePdBtn" class="mt-6 w-full bg-teal-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-teal-600 transition-colors">
+                            Elaborate on Pd Neural Origins ✨
+                        </button>
+                        <div id="pdElaboration" class="mt-4 p-4 bg-teal-50 rounded-lg text-slate-700 hidden">
+                            <p class="text-center text-slate-500">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="fpn" class="content-section">
+                 <div class="bg-white p-6 rounded-xl shadow-md mb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-3">The Brain's Control System: Fronto-Parietal Network</h2>
+                    <p class="text-slate-700 leading-relaxed">While N2ac and Pd are generated in specific sensory areas, they are orchestrated by a higher-level, domain-general control system: the Fronto-Parietal Network (FPN). The FPN acts as the brain's "executive," sending top-down signals to manage attention based on our goals. It tells the auditory cortex to "listen here" (generating the N2ac) and the visual cortex to "ignore that" (generating the Pd), acting as a flexible hub for cognitive control.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4 text-center">FPN Top-Down Modulation</h3>
+                    <div class="relative w-full max-w-2xl mx-auto p-4">
+                        <div class="relative w-64 h-72 mx-auto">
+                            <div class="absolute inset-0 border-4 border-slate-300 rounded-[50%/60%]"></div>
+                            <div id="fpn-region" class="absolute top-4 left-1/2 -translate-x-1/2 w-40 h-16 bg-red-200 border-2 border-red-400 rounded-lg flex items-center justify-center text-center text-sm font-semibold text-red-800 cursor-pointer">Fronto-Parietal Network (FPN)</div>
+                            <div id="auditory-region" class="absolute top-1/2 -translate-y-1/2 left-2 w-28 h-12 bg-blue-200 border-2 border-blue-400 rounded-lg flex items-center justify-center text-center text-sm font-semibold text-blue-800 cursor-pointer">Auditory Cortex</div>
+                            <div id="visual-region" class="absolute bottom-4 right-4 w-28 h-12 bg-teal-200 border-2 border-teal-400 rounded-lg flex items-center justify-center text-center text-sm font-semibold text-teal-800 cursor-pointer">Visual Cortex</div>
+                            <div id="fpn-tooltip" class="absolute hidden bg-slate-800 text-white text-xs rounded py-1 px-2 z-10 w-48">The FPN is a high-level control network for goal-directed behavior.</div>
+                            <div id="auditory-tooltip" class="absolute hidden bg-slate-800 text-white text-xs rounded py-1 px-2 z-10 w-48">Processes sound. Receives FPN signals to enhance targets (N2ac).</div>
+                            <div id="visual-tooltip" class="absolute hidden bg-slate-800 text-white text-xs rounded py-1 px-2 z-10 w-48">Processes sight. Receives FPN signals to suppress distractors (Pd).</div>
+                        </div>
+                        <p class="text-center mt-4 text-slate-600">Hover over the brain regions to learn about their roles.</p>
+                    </div>
+
+                    <button id="suggestResearchBtn" class="mt-6 w-full bg-slate-700 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-slate-800 transition-colors">
+                        Suggest Research Questions ✨
+                    </button>
+                    <div id="researchQuestions" class="mt-4 p-4 bg-slate-100 rounded-lg text-slate-700 hidden">
+                        <p class="text-center text-slate-500">Loading...</p>
+                    </div>
+
+                    <button id="suggestParadigmBtn" class="mt-6 w-full bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-600 transition-colors">
+                        Suggest Experimental Paradigm ✨
+                    </button>
+                    <div id="experimentalParadigm" class="mt-4 p-4 bg-indigo-50 rounded-lg text-slate-700 hidden">
+                        <p class="text-center text-slate-500">Loading...</p>
+                    </div>
+
+                    <div class="mt-8 bg-white p-6 rounded-xl shadow-md">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Generate a Hypothesis ✨</h2>
+                        <p class="text-slate-700 mb-4">Describe a scenario or research idea, and I'll generate a testable hypothesis related to selective attention.</p>
+                        <textarea id="hypothesisInput" placeholder="e.g., How does meditation affect distractor suppression?" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-green-500 focus:border-green-500 h-24 mb-4"></textarea>
+                        <button id="generateHypothesisBtn" class="w-full bg-green-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-green-600 transition-colors">
+                            Generate Hypothesis
+                        </button>
+                        <div id="generatedHypothesis" class="mt-4 p-4 bg-green-50 rounded-lg text-slate-700 hidden">
+                            <p class="text-center text-slate-500">Hypothesis will appear here...</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-white p-6 rounded-xl shadow-md">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-4">Suggest Related Brain Regions/Networks ✨</h2>
+                        <p class="text-slate-700 mb-4">Enter an ERP component (e.g., N2ac, Pd) or a brain network (e.g., FPN) to get suggestions for related brain regions or networks involved in attention.</p>
+                        <input type="text" id="regionsInput" placeholder="e.g., N2ac, Fronto-Parietal Network" class="w-full p-3 border border-slate-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 mb-4">
+                        <button id="suggestRegionsBtn" class="w-full bg-orange-500 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-orange-600 transition-colors">
+                            Suggest Regions
+                        </button>
+                        <div id="suggestedRegions" class="mt-4 p-4 bg-orange-50 rounded-lg text-slate-700 hidden">
+                            <p class="text-center text-slate-500">Related regions will appear here...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            function switchTab(targetId) {
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetId) {
+                        section.classList.add('active');
+                    }
+                });
+
+                navButtons.forEach(button => {
+                    button.classList.remove('active');
+                    if (button.dataset.target === targetId) {
+                        button.classList.add('active');
+                    }
+                });
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    switchTab(button.dataset.target);
+                });
+            });
+
+            const n2acData = {
+                labels: ['Target Selection', 'Auditory Modality', 'Anterior Topography', 'Fast Latency (75-250ms)', 'Negative Polarity'],
+                datasets: [{
+                    label: 'N2ac Strength',
+                    data: [5, 5, 5, 4, 5],
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                }]
+            };
+
+            const pdData = {
+                labels: ['Distractor Suppression', 'Visual Modality', 'Posterior Topography', 'Medium Latency (~200-300ms)', 'Positive Polarity'],
+                datasets: [{
+                    label: 'Pd Strength',
+                    data: [5, 5, 5, 3, 5],
+                    backgroundColor: 'rgba(13, 148, 136, 0.2)',
+                    borderColor: 'rgba(13, 148, 136, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(13, 148, 136, 1)',
+                }]
+            };
+
+            const chartOptions = {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 12
+                            },
+                            color: '#334155'
+                        },
+                        ticks: {
+                            display: false,
+                            stepSize: 1
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 5
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            };
+
+            const n2acChartCtx = document.getElementById('n2acChart').getContext('2d');
+            new Chart(n2acChartCtx, {
+                type: 'radar',
+                data: n2acData,
+                options: chartOptions
+            });
+
+            const pdChartCtx = document.getElementById('pdChart').getContext('2d');
+            new Chart(pdChartCtx, {
+                type: 'radar',
+                data: pdData,
+                options: chartOptions
+            });
+
+            const fpnRegion = document.getElementById('fpn-region');
+            const auditoryRegion = document.getElementById('auditory-region');
+            const visualRegion = document.getElementById('visual-region');
+            const fpnTooltip = document.getElementById('fpn-tooltip');
+            const auditoryTooltip = document.getElementById('auditory-tooltip');
+            const visualTooltip = document.getElementById('visual-tooltip');
+
+            function showTooltip(region, tooltip) {
+                const regionRect = region.getBoundingClientRect();
+                const containerRect = region.parentElement.getBoundingClientRect();
+                tooltip.style.left = `${regionRect.left - containerRect.left}px`;
+                tooltip.style.top = `${regionRect.top - containerRect.top - tooltip.offsetHeight - 5}px`;
+                tooltip.classList.remove('hidden');
+            }
+
+            fpnRegion.addEventListener('mouseover', () => showTooltip(fpnRegion, fpnTooltip));
+            fpnRegion.addEventListener('mouseout', () => fpnTooltip.classList.add('hidden'));
+
+            auditoryRegion.addEventListener('mouseover', () => showTooltip(auditoryRegion, auditoryTooltip));
+            auditoryRegion.addEventListener('mouseout', () => auditoryTooltip.classList.add('hidden'));
+
+            visualRegion.addEventListener('mouseover', () => showTooltip(visualRegion, visualTooltip));
+            visualRegion.addEventListener('mouseout', () => visualTooltip.classList.add('hidden'));
+
+            // LLM Integration
+            async function generateText(prompt, outputElementId) {
+                const outputElement = document.getElementById(outputElementId);
+                outputElement.classList.remove('hidden');
+                outputElement.innerHTML = '<p class="text-center text-slate-500">Loading...</p>';
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will provide this at runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        outputElement.innerHTML = `<p>${text}</p>`;
+                    } else {
+                        outputElement.innerHTML = '<p class="text-red-500">Error: Could not generate response. Please try again.</p>';
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    outputElement.innerHTML = '<p class="text-red-500">Error: Failed to connect to the AI. Please check your network.</p>';
+                }
+            }
+
+            document.getElementById('elaborateN2acBtn').addEventListener('click', () => {
+                const prompt = "Provide a more detailed, speculative explanation of the neural origins of the N2ac ERP component in the context of auditory selective attention. Focus on the interplay between sensory cortex and frontal regions, and potential cellular mechanisms. Keep it concise, around 150 words.";
+                generateText(prompt, 'n2acElaboration');
+            });
+
+            document.getElementById('elaboratePdBtn').addEventListener('click', () => {
+                const prompt = "Provide a more detailed, speculative explanation of the neural origins of the Pd ERP component in the context of visual distractor suppression. Focus on the interplay between sensory cortex and parietal regions, and potential inhibitory mechanisms. Keep it concise, around 150 words.";
+                generateText(prompt, 'pdElaboration');
+            });
+
+            document.getElementById('suggestResearchBtn').addEventListener('click', () => {
+                const prompt = "Generate 3-5 novel and insightful research questions related to the neural mechanisms of selective attention, specifically incorporating concepts of N2ac, Pd, and the Fronto-Parietal Network. Format them as a bulleted list.";
+                generateText(prompt, 'researchQuestions');
+            });
+
+            document.getElementById('defineTermBtn').addEventListener('click', () => {
+                const term = document.getElementById('termInput').value.trim();
+                if (term) {
+                    const prompt = `Define the neuroscience term "${term}" concisely.`;
+                    generateText(prompt, 'termDefinition');
+                } else {
+                    document.getElementById('termDefinition').classList.remove('hidden');
+                    document.getElementById('termDefinition').innerHTML = '<p class="text-red-500">Please enter a term to define.</p>';
+                }
+            });
+
+            document.getElementById('suggestParadigmBtn').addEventListener('click', () => {
+                const prompt = "Suggest a simple experimental paradigm to study selective attention, specifically designed to elicit both N2ac and Pd ERP components, and explain why it would elicit them. Keep it concise, around 150 words.";
+                generateText(prompt, 'experimentalParadigm');
+            });
+
+            document.getElementById('generateHypothesisBtn').addEventListener('click', () => {
+                const scenario = document.getElementById('hypothesisInput').value.trim();
+                if (scenario) {
+                    const prompt = `Given the scenario: "${scenario}", generate a testable hypothesis related to selective attention, N2ac, Pd, or the Fronto-Parietal Network.`;
+                    generateText(prompt, 'generatedHypothesis');
+                } else {
+                    document.getElementById('generatedHypothesis').classList.remove('hidden');
+                    document.getElementById('generatedHypothesis').innerHTML = '<p class="text-red-500">Please describe a scenario to generate a hypothesis.</p>';
+                }
+            });
+
+            document.getElementById('suggestRegionsBtn').addEventListener('click', () => {
+                const componentOrNetwork = document.getElementById('regionsInput').value.trim();
+                if (componentOrNetwork) {
+                    const prompt = `Suggest other brain regions or networks that are functionally related to or interact with "${componentOrNetwork}" in the context of selective attention. Provide a brief explanation for each. Format as a bulleted list.`;
+                    generateText(prompt, 'suggestedRegions');
+                } else {
+                    document.getElementById('suggestedRegions').classList.remove('hidden');
+                    document.getElementById('suggestedRegions').innerHTML = '<p class="text-red-500">Please enter an ERP component or brain network.</p>';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
