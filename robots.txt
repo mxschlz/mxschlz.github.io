@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://mxschlz.de/sitemap.xml
+Sitemap: https://schulz-max.de/sitemap.xml
