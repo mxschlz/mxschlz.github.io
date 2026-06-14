@@ -91,6 +91,25 @@
       description:
         - Presented research on the infant OCAPI (Objective Coding of Attention Pipeline for Infants) project
 
+- title: Teaching
+  type: time_table
+  contents:
+    - title: EEG Workshop Instructor
+      institution: HörHanse Tage 2026, Lübeck, Germany
+      year: June 2026
+      description:
+        - Designed and conducted an interactive workshop on EEG application, setup, and analysis pipeline for ~50 participants
+    - title: Seminar Instructor (Statistics & EEG)
+      institution: University of Lübeck & University of Leipzig, Germany
+      year: Occasional
+      description:
+        - Instructed student seminars on statistical methods and experimental EEG application (preprocessing, design, and data analysis)
+    - title: Student Tutor (Psychoacoustic EEG)
+      institution: University of Leipzig, Germany
+      year: 2020 - 2024
+      description:
+        - Tutored students in preparing, conducting, and analyzing psychoacoustic EEG experiments using Python and PsychoPy
+
 - title: Skills
   type: list_groups
   contents:
