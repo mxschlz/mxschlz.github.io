@@ -72,6 +72,25 @@
     - title: Auditory Scene Analysis
     - title: Electroencephalography (EEG)
 
+- title: Talks & Symposia
+  type: time_table
+  contents:
+    - title: Symposium Chair & Speaker
+      institution: Psychologie und Gehirn (PuG) 2026, Heidelberg, Germany
+      year: June 2026
+      description:
+        - Organized and chaired the symposium "Dynamics of Enhancement and Suppression: Integrating Neural and Behavioral Perspectives on Selective Attention"
+    - title: Symposium Speaker
+      institution: Tagung experimentell arbeitender Psychologen (TeaP) 2026, Tübingen, Germany
+      year: March 2026
+      description:
+        - Held a talk titled "Behavioral and neural signatures of extracting regularities from relevant and irrelevant sequences of sound"
+    - title: Invited Talk
+      institution: Marlene Meyer's Lab, Donders Institute, Nijmegen, Netherlands
+      year: Jan. 2026
+      description:
+        - Presented research on the infant OCAPI (Objective Coding of Attention Pipeline for Infants) project
+
 - title: Skills
   type: list_groups
   contents:
