@@ -18,7 +18,7 @@ social: true # includes social icons at the bottom of the page
 
 Hi, I'm Max! 👋
 
-I am a **neuroscience PhD candidate** at the [Auditory Cognition Lab](https://auditorycognition.com/) at the [University of Lübeck](https://www.ipsy1.uni-luebeck.de/startseite), supervised by Dr. Malte Wöstmann. Together with Dr. Wöstmann and Prof. Dr. Jonas Obleser, my research aims to unravel the cognitive and neural mechanisms underlying how we focus our attention in complex acoustic environments.
+I am a **PhD candidate** at the [Auditory Cognition Lab](https://auditorycognition.com/) at the [University of Lübeck](https://www.ipsy1.uni-luebeck.de/startseite). Together with Malte Wöstmann and Jonas Obleser, my research aims to unravel the cognitive and neural mechanisms underlying how we focus our attention in complex acoustic environments.
 
 ---
 
@@ -41,7 +41,7 @@ I am a **neuroscience PhD candidate** at the [Auditory Cognition Lab](https://au
         <i class="fa-solid fa-brain mr-2"></i> Methods & Tech
       </h5>
       <p class="card-text text-muted small">
-        Using high-density <b>EEG</b> (Electroencephalography) and developing webcam-based <b>eye & head tracking</b> tools (like OCAPI) to track attention in real-time.
+        Using <b>EEG</b> (Electroencephalography) and developing webcam-based <b>eye & head tracking</b> tools to track attention in real-time.
       </p>
     </div>
   </div>
