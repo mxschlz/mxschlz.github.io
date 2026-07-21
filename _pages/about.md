@@ -18,7 +18,7 @@ social: true # includes social icons at the bottom of the page
 
 Hi, I'm Max! 👋
 
-I am a **PhD candidate** at the [Dynamics of Attention Lab](https://auditorycognition.com/dynamics-of-attention/) at the [University of Lübeck](https://www.ipsy1.uni-luebeck.de/startseite). Together with Malte Wöstmann and Jonas Obleser, my research aims to unravel the cognitive and neural mechanisms underlying how we focus our attention in complex acoustic environments.
+I am a **PhD candidate** at the [Dynamics of Attention Lab](https://auditorycognition.com/dynamics-of-attention/) at the [University of Lübeck](https://www.ipsy1.uni-luebeck.de/startseite). Together with Malte Wöstmann and Jonas Obleser, my research aims to unravel the cognitive and neural mechanisms underlying how we focus our attention in acoustically busy environments.
 
 ---
 
